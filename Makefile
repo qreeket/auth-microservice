@@ -4,6 +4,6 @@ get-protos-submodule:
 
 update-protos-submodule:
 	@echo "initializing protos submodule..." && \
-	git submodule update --init --recursive
+	git submodule update --init --recursive --remote
 
 .PHONY: get-protos-submodule update-protos-submodule
