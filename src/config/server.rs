@@ -47,16 +47,16 @@ pub(crate) async fn init_server() -> Result<(), Box<dyn std::error::Error>> {
     );
 
     // reflection service
-    // let service = tonic_reflection::server::Builder::configure()
-    //     .register_encoded_file_descriptor_set(proto::AUTH_FILE_DESCRIPTOR_SET)
-    //     .build()
-    //     .unwrap();
+    let service = tonic_reflection::server::Builder::configure()
+        .register_encoded_file_descriptor_set(proto::AUTH_FILE_DESCRIPTOR_SET)
+        .build()
+        .unwrap();
 
     log::info!("initiating auth grpc server on port {}", &port);
 
     // create a new instance of the grpc server
     tonic::transport::Server::builder()
-        // .add_service(service)
+        .add_service(service)
         .add_service(AuthServiceServer::new(auth_service))
         .serve(addr)
         .await?;
