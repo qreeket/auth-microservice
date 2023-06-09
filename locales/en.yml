@@ -1,0 +1,67 @@
+app_name: Qreeket
+
+# account messages
+invalid_credentials: Invalid phone number, country or password
+account_locked: Your account has been locked
+account_not_verified: Your account has not been verified
+account_not_found: We are unable to verify your account. Please try again with the correct credentials
+account_found: We found your account. Please enter your password to continue
+account_exists: This account is already taken by someone else. Please try again with a different account
+invalid_otp: Invalid OTP
+invalid_phone_number: Invalid phone number
+password_reset_failed: Password reset failed
+invalid_referral_code: Invalid referral code
+phone_number_already_exists: Phone number already exists. Login instead
+email_already_exists: Email already exists. Login instead
+upgrade_to_premium_failed: Sorry, we are unable to upgrade your account to premium at this time. Please try again later
+upgrade_to_premium_success: Your account has been upgraded to premium successfully. Thank you for your support
+account_already_premium: You have already upgraded your account to premium. Thank you for your support
+account_already_standard: You are already on the standard plan. Thank you
+downgrade_to_standard_failed: Sorry, we are unable to downgrade your account to standard at this time. Please try again later
+invalid_reset_token: Your request to reset your password has expired or is invalid. Please try again
+
+# business messages
+business_not_found: Business account not found. Create one from your profile page to get started
+business_account_exists: Business account already exists
+
+# auth messages
+auth_failed: Authentication failed
+auth_started: Authentication started
+auth_success: Authentication successful
+access_denied: Access denied
+
+# misc
+invalid_language_code: Unsupported language code
+sms_send_failed: We are unable to verify your account at this time. Please try again later
+sms_send_not_supported: OTP is not supported for this authentication method. Please try again with a phone number instead
+sms_send_success: Verification code sent successfully
+sms_verification_failed: We were unable to verify the SMS for some reason. Please try again later.
+sms_verification_success: Phone number verified successfully
+media_not_uploaded: Media not uploaded
+
+# country messages
+countries_not_found: Countries not found
+countries_found: Countries found
+country_not_found: Country not found
+country_not_added: Country not added
+country_not_deleted: Country not deleted
+country_already_exists: Country already exists
+
+# college messages
+colleges_not_found: Colleges not found
+colleges_found: Colleges found
+college_not_found: College not found
+college_not_added: College not added
+college_not_deleted: College not deleted
+college_already_exists: College already exists
+
+# access token
+refresh_token_not_found: Refresh token not found
+invalid_token: Invalid token
+access_token_not_found: Access token not found
+access_token_found: Access token found
+access_token_found_in_request: Access token found in request
+unable_to_create_token: Unable to create token
+access_token_verified: Access token verified
+token_expired: Your session has expired
+generating_new_access_token: Generating new access token
