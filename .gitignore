@@ -20,3 +20,5 @@ target/
 **/*.iml
 fly.toml
 **/*.lock
+
+.DS_Store
