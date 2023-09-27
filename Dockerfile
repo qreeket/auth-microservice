@@ -1,11 +1,6 @@
-#FROM rust:1.72.0-slim-buster as builder
-#WORKDIR /usr/src/auth-microservice
-#COPY . .
-#RUN cargo build --release
-
-#FROM alpine:3.18.0
-FROM scratch
-COPY target/release/auth .
-COPY .env .
+FROM rust:alpine3.18
+COPY ./target/release/auth /usr/local/bin/app
+COPY .env /usr/local/bin/.env
+COPY Cargo.toml /usr/local/bin/app
 EXPOSE 7001
-CMD ["./auth"]
+CMD ["/usr/local/bin/app"]

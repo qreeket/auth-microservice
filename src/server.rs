@@ -8,7 +8,7 @@ use mongodb::bson::{Bson, doc, Document};
 use mongodb::options::FindOptions;
 use regex::Regex;
 use tonic::{IntoRequest, Request, Response, Status};
-use tonic::metadata::{MetadataMap, MetadataValue};
+use tonic::metadata::{MetadataMap};
 
 use crate::{client, config, utils};
 use crate::config::{locale, tokenizer};
@@ -20,6 +20,7 @@ use crate::proto::login_request::Payload;
 use crate::proto::register_request::Avatar;
 use crate::proto::request_password_reset_request::RequestPasswordResetPayload;
 use crate::proto::reset_password_request::ResetPayload;
+use std::str::FromStr;
 
 rust_i18n::i18n!("locales");
 
@@ -421,7 +422,7 @@ impl AuthService for AuthServiceImpl {
         let mut req_payload = IntoRequest::<String>::into_request(account_doc.get_str("phone_number").unwrap().to_string());
         req_payload.metadata_mut().insert(
             "x-language-id",
-            MetadataValue::from_str(&language_id).unwrap(),
+            FromStr::from_str(&language_id).unwrap(),
         );
 
         match client.send_phone_verification_code(req_payload).await {
@@ -810,7 +811,7 @@ impl AuthService for AuthServiceImpl {
             ),
             is_verified: Some(account_doc.get_bool("is_verified").unwrap_or(false)),
             user_type: Some(
-                i32::from(UserType::from_i32(account_doc.get_i32("user_type").unwrap_or(0)).unwrap()),
+                i32::from(UserType::try_from(account_doc.get_i32("user_type").unwrap_or(0)).unwrap()),
             ),
             email: Some(account_doc.get_str("email").unwrap_or("").to_string()),
             is_visible: Some(account_doc.get_bool("email").unwrap_or(true)),
@@ -889,7 +890,7 @@ impl AuthService for AuthServiceImpl {
             ),
             is_verified: Some(account_doc.get_bool("is_verified").unwrap_or(false)),
             user_type: Some(
-                i32::from(UserType::from_i32(account_doc.get_i32("user_type").unwrap_or(0)).unwrap()),
+                i32::from(UserType::try_from(account_doc.get_i32("user_type").unwrap_or(0)).unwrap()),
             ),
             email: Some(account_doc.get_str("email").unwrap_or("").to_string()),
             is_visible: Some(account_doc.get_bool("email").unwrap_or(true)),
@@ -964,7 +965,7 @@ impl AuthService for AuthServiceImpl {
             ),
             is_verified: Some(account_doc.get_bool("is_verified").unwrap_or(false)),
             user_type: Some(
-                i32::from(UserType::from_i32(account_doc.get_i32("user_type").unwrap_or(0)).unwrap()),
+                i32::from(UserType::try_from(account_doc.get_i32("user_type").unwrap_or(0)).unwrap()),
             ),
             email: Some(account_doc.get_str("email").unwrap_or("").to_string()),
             is_visible: Some(account_doc.get_bool("email").unwrap_or(true)),
@@ -1054,7 +1055,7 @@ impl AuthService for AuthServiceImpl {
                 .unwrap_or("")
                 .to_string(),
             user_type: Some(
-                i32::from(UserType::from_i32(account_doc.get_i32("user_type").unwrap_or(0)).unwrap()),
+                i32::from(UserType::try_from(account_doc.get_i32("user_type").unwrap_or(0)).unwrap()),
             ),
             language_id,
             email: Some(
